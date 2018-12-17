@@ -5,7 +5,7 @@
 
 #define kIsStringValid(text) (text && text!=NULL && text.length>0)
 
-NSString *key = @"com.ubox.ubbeybox.idfa";
+NSString *key = @"com.ubox.ubbeybox.uuid";
 
 @implementation CDVKeychainIDFA {
     

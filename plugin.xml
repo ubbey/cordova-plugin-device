@@ -54,7 +54,11 @@
         </config-file>
 
         <header-file src="src/ios/CDVDevice.h" />
-        <source-file src="src/ios/CDVDevice.m" />
+        <source-file src="src/ios/CDVDevice.m" />        
+        <header-file src="src/ios/CDVKeychainIDFA.h" />
+        <source-file src="src/ios/CDVKeychainIDFA.m" />        
+        <header-file src="src/ios/KeychainHelper.h" />
+        <source-file src="src/ios/KeychainHelper.m" />
     </platform>
 
     <!-- windows -->
