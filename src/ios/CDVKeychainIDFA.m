@@ -35,47 +35,50 @@ NSString *key = @"com.ubox.ubbeybox.uuid";
     {
         return deviceID;
     } else {
-        if([ASIdentifierManager sharedManager].advertisingTrackingEnabled)
-        {
-            deviceID = [[[[ASIdentifierManager sharedManager] advertisingIdentifier] UUIDString] lowercaseString];
-            [CDVKeychainIDFA setIdfaString:deviceID];
-            return deviceID;
-        } else {
-            return key;
-        }        
+        deviceID = [[NSProcessInfo processInfo] globallyUniqueString];
+        return deviceID;
+//        if([ASIdentifierManager sharedManager].advertisingTrackingEnabled)
+//        {
+//            deviceID = [[[[ASIdentifierManager sharedManager] advertisingIdentifier] UUIDString] lowercaseString];
+//            [CDVKeychainIDFA setIdfaString:deviceID];
+//            return deviceID;
+//        } else {
+//            return key;
+//        }
     }
 }
 
 - (void)getDeviceID:(CDVInvokedUrlCommand*)command
 {
-    CDVPluginResult* pluginResult = nil;
-
-    NSDictionary *args = [command.arguments objectAtIndex:0];
-
-    if( args.count > 0) {
-       if([args objectForKey:@"key"]) {
-            key = [args objectForKey:@"key"];
-       }
-    }
-
-    //  read cache
-    NSString *deviceID = [CDVKeychainIDFA getIdfaString];
-    if (kIsStringValid(deviceID))
-    {
-        pluginResult = [CDVPluginResult resultWithStatus:CDVCommandStatus_OK messageAsString:deviceID];
-    } else {
-        if([ASIdentifierManager sharedManager].advertisingTrackingEnabled)
-        {
-            deviceID = [[[[ASIdentifierManager sharedManager] advertisingIdentifier] UUIDString] lowercaseString];
-            [CDVKeychainIDFA setIdfaString:deviceID];
-            pluginResult = [CDVPluginResult resultWithStatus:CDVCommandStatus_OK messageAsString:deviceID];
-        } else {
-            pluginResult = [CDVPluginResult resultWithStatus:CDVCommandStatus_ERROR messageAsString:@"未开启adsupport"];
-
-        }
-    }
-
-    [self.commandDelegate sendPluginResult:pluginResult callbackId:command.callbackId];
+//    CDVPluginResult* pluginResult = nil;
+//
+//    NSDictionary *args = [command.arguments objectAtIndex:0];
+//
+//    if( args.count > 0) {
+//       if([args objectForKey:@"key"]) {
+//            key = [args objectForKey:@"key"];
+//       }
+//    }
+//
+//    //  read cache
+//    NSString *deviceID = [CDVKeychainIDFA getIdfaString];
+//    if (kIsStringValid(deviceID))
+//    {
+//        pluginResult = [CDVPluginResult resultWithStatus:CDVCommandStatus_OK messageAsString:deviceID];
+//    } else {
+//        if([ASIdentifierManager sharedManager].advertisingTrackingEnabled)
+//        {
+////            deviceID = [[[[ASIdentifierManager sharedManager] advertisingIdentifier] UUIDString] lowercaseString];
+//            deviceID = [getMyDeviceID];
+//            [CDVKeychainIDFA setIdfaString:deviceID];
+//            pluginResult = [CDVPluginResult resultWithStatus:CDVCommandStatus_OK messageAsString:deviceID];
+//        } else {
+//            pluginResult = [CDVPluginResult resultWithStatus:CDVCommandStatus_ERROR messageAsString:@"未开启adsupport"];
+//
+//        }
+//    }
+//
+//    [self.commandDelegate sendPluginResult:pluginResult callbackId:command.callbackId];
 }
 
 + (NSString*)getIdfaString

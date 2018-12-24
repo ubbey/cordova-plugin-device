@@ -73,7 +73,7 @@
     
     // return app_uuid;
     CDVKeychainIDFA *cdv = [CDVKeychainIDFA new];
-    NSString deviceID = [cdv getMyDeviceID];
+    NSString *deviceID = [cdv getMyDeviceID];
     return deviceID;
 }
 
